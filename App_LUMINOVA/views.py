@@ -6,6 +6,7 @@ from django.contrib import messages
 
 # Create your views here.
 
+#  Funciones para las vistas del navbar
 def compras(req):
     return render(req, "compras.html")
 
@@ -24,8 +25,9 @@ def control_calidad(req):
 def inicio(request):
     if request.user.is_authenticated:
         return redirect('App_LUMINOVA:dashboard')  # Redirige al dashboard si está autenticado
-    return redirect('App_LUMINOVA:login')  # Redirige al login si no está autenticado  
+    return redirect('App_LUMINOVA:login')  # Redirige al login si no está autenticado
 
+#  Funciones para el login y logout
 def login_view(request):
     if request.user.is_authenticated:
         return redirect('dashboard.html')
@@ -42,22 +44,32 @@ def login_view(request):
         else:
             messages.error(request, 'Usuario o contraseña incorrectos.')
 
-    return render(request, 'login.html')  
+    return render(request, 'login.html')
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'dashboard.html') 
+    return render(request, 'dashboard.html')
 
 def logout_view(request):
     logout(request)
     return redirect('login.html')
 
+#  Funciones para los botones del sidebar del Admin
+def usuarios(request):
+    return render(request, 'usuarios.html')
 
-def usuarios_view(request):
-    return render(request, 'usuarios.html')  
-
-def roles_permisos_view(request):
+def roles_permisos(request):
     return render(request, 'roles_permisos.html')
 
-def auditoria_view(request):
+def auditoria(request):
     return render(request, 'auditoria.html')
+
+#  Funciones para los botones del sidebar de Produccion
+def ordenes(request):
+    return render(request, 'ordenes.html')
+
+def planificacion(request):
+    return render(request, 'planificacion.html')
+
+def reportes(request):
+    return render(request, 'reportes.html')

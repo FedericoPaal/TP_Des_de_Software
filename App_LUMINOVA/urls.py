@@ -21,18 +21,25 @@ from .views import *
 app_name = 'App_LUMINOVA'
 
 urlpatterns = [
-    path("", inicio, name="inicio"),  
+    path("", inicio, name="inicio"),
     path("compras/", compras, name="compras"),
     path("produccion/", produccion, name="produccion"),
     path("ventas/", ventas, name="ventas"),
     path("deposito/", deposito, name="deposito"),
     path("control_calidad/", control_calidad, name="control_calidad"),
-    
+
     path('login/', auth_views.LoginView.as_view(template_name='login.html', next_page='App_LUMINOVA:inicio'), name='login'),  # Página de login
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),  # Cerrar sesión
-    
-    path('dashboard/', dashboard_view, name='dashboard'),  # Dashboard
-    path('usuarios/', usuarios_view, name='usuarios'),  # Página de usuarios
-    path('roles-permisos/', roles_permisos_view, name='roles-permisos'),  # Roles y permisos
-    path('auditoria/', auditoria_view, name='auditoria'),  # Auditoría de accesos
+
+#  Paths para los botones del sidebar de Admin
+
+    path('dashboard/', dashboard_view, name='dashboard'),
+    path('usuarios/', usuarios, name='usuarios'),
+    path('roles-permisos/', roles_permisos, name='roles-permisos'),
+    path('auditoria/', auditoria, name='auditoria'),
+
+#  Paths para los botones del sidebar de Produccion
+    path('ordenes/', ordenes, name='ordenes'),
+    path('planificacion/', planificacion, name='planificacion'),
+    path('reportes/', reportes, name='reportes'),
 ]
