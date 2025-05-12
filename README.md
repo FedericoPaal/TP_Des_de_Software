@@ -12,7 +12,7 @@ Este es un proyecto Django para la gestión de usuarios, roles y auditorías. Es
 
 1. Clona este repositorio:
    ```bash
-   git clone 
+   git clone
 https://github.com/tu-usuario/tu-repositorio.git
 
    cd tu-repositorio
@@ -20,9 +20,11 @@ https://github.com/tu-usuario/tu-repositorio.git
 
 2. Crea un entorno virtual:
    ```bash
-   python3 -m venv env
-   source env/bin/activate  # En Linux/Mac
+   python -m venv env       # En Windows
+   python3 -m venv env      # En Linux/Mac
+
    env\Scripts\activate     # En Windows
+   source env/bin/activate  # En Linux/Mac
    ```
 
 3. Instala las dependencias:
@@ -47,7 +49,7 @@ https://github.com/tu-usuario/tu-repositorio.git
 
 2. **Clona el repositorio (o tu fork)😗*
    ```bash
-   git clone 
+   git clone
 https://github.com/tu-usuario/tu-repositorio.git
 
    cd tu-repositorio
