@@ -1,0 +1,88 @@
+{% extends 'padre.html' %}
+
+{% block sidebar_content %}
+
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse border-end vh-100" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+        <div class="position-sticky pt-4">
+            <h6 class="sidebar-heading d-flex justify-content-center align-items-center px-3 mt-4 mb-1 text-white fw-bold">
+                <span>Produccion</span>
+            </h6>
+            <hr class="text-white">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link  {% if '/ordenes/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" aria-current="page" href="{% url 'App_LUMINOVA:ordenes' %}" style="border-radius: 25px;">
+                         <span class="ms-2">Ordenes</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link  {% if '/planificacion/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:planificacion' %}" style="border-radius: 25px; padding-top: 0.75rem; padding-bottom: 0.75rem;">
+                         <span class="ms-2">Planificacion</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link  {% if '/reportes/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:reportes' %}" style="border-radius: 25px;">
+                         <span class="ms-2">Reportes</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+{% endblock %}
+{% block content %}
+
+<div class="table-primary" role="alert"  style=" margin-top: 75px;background-color: royalblue;">
+    <table class="table table-bordered" ">
+        <thead style="border-color: white; background-color: royalblue;" >
+            <tr>
+                <th scope="row" colspan="4" class="text-center" style="color: black; font-size: 25px;background-color: royalblue"> CARRITO </th>
+            </tr>
+            <tr style="color: black; font-size: 22px;">
+                <th scope="col"> Titulo </th>
+                <th scope="col"> Precio </th>
+                <th scope="col"> Cantidad </th>
+                <th scope="col"> Subtotal </th>
+            </tr>
+        </thead>
+        <tbody style="border-color: white;background-color: royalblue;">
+
+
+
+
+                    <tr style="color: black; font-size: 20px;">
+                        <td> value.acumulado </td>
+                        <td> $ value.acumulado </td>
+                        <td>    value.acumulado </td>
+                        <td> $ value.acumulado
+
+                        </td>
+                    </tr>
+
+
+
+                <tr>
+                    <td colspan="4">
+                        <div class="alert alert-danger text-center" style="background-color:rgb(151, 200, 233); color: black; border-color: black; font-size: 18px;"> Sin productos </div>
+                    </td>
+                </tr>
+
+
+
+                <tr style="color: black; font-size: 22px;">
+                    <th scope="col">  </th>
+                    <th scope="col">  </th>
+                    <th scope="row" style="text-align: right;"> Total: </th>
+
+                    <td colspan="4"> $ importe_total </td>
+
+                </tr>
+        </tbody>
+    </table>
+    <hr>
+    </div>
+
+
+
+{% endblock %}
