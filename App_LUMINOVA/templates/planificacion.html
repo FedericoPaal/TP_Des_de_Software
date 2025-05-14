@@ -1,7 +1,5 @@
 {% extends 'padre.html' %}
 
-{% block title %}Roles y Permisos | Luminova{% endblock %}
-
 {% block sidebar_content %}
 
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse border-end vh-100" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
@@ -55,7 +53,13 @@
                 <td>Nombre</td>
                 <td>fecha de inicio</td>
                 <td>Fecha limite</td>
-                <td>Grupo A</td>
+                <td><select class="form-select" id="asignar1">
+                                <option selected disabled>Sin asignar</option>
+                                <option value="Grupo A">Grupo A</option>
+                                <option value="Grupo B">Grupo B</option>
+                                <option value="Grupo C">Grupo C</option>
+                        </select>
+                    </td>
 
             </tr>
             <tr>
@@ -63,14 +67,26 @@
                 <td>Nombre</td>
                 <td>fecha de inicio</td>
                 <td>Fecha limite</td>
-                <td>Grupo B</td>
+                <td><select class="form-select" id="asignar2">
+                                <option selected disabled>Sin asignar</option>
+                                <option value="Grupo A">Grupo A</option>
+                                <option value="Grupo B">Grupo B</option>
+                                <option value="Grupo C">Grupo C</option>
+                        </select>
+                    </td>
             </tr>
             <tr>
                 <td>00045240</td>
                 <td>Nombre</td>
                 <td>fecha de inicio</td>
                 <td>Fecha limite</td>
-                <td>Grupo C</td>
+                <td><select class="form-select" id="asignar3">
+                                <option selected disabled>Sin asignar</option>
+                                <option value="Grupo A">Grupo A</option>
+                                <option value="Grupo B">Grupo B</option>
+                                <option value="Grupo C">Grupo C</option>
+                        </select>
+                    </td>
             </tr>
             <tr>
                 <td>N</td>
@@ -78,15 +94,13 @@
                 <td>fecha de inicio</td>
                 <td>Fecha limite</td>
                 <td>
-                    <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sin asignar
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Grupo A</a></li>
-                        <li><a class="dropdown-item" href="#">Grupo B</a></li>
-                        <li><a class="dropdown-item" href="#">Grupo C</a></li>
-                    </ul>
+
+                    <select class="form-select" id="asignar4">
+                                <option selected disabled>Sin asignar</option>
+                                <option value="Grupo A">Grupo A</option>
+                                <option value="Grupo B">Grupo B</option>
+                                <option value="Grupo C">Grupo C</option>
+                        </select>
                     </div>
                 </td>
             </tr>
@@ -96,16 +110,12 @@
                 <td>fecha de inicio</td>
                 <td>Fecha limite</td>
                 <td>
-                    <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sin asignar
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Grupo A</a></li>
-                        <li><a class="dropdown-item" href="#">Grupo B</a></li>
-                        <li><a class="dropdown-item" href="#">Grupo C</a></li>
-                    </ul>
-                    </div>
+                    <select class="form-select" id="asignar5">
+                                <option selected disabled>Sin asignar</option>
+                                <option value="Grupo A">Grupo A</option>
+                                <option value="Grupo B">Grupo B</option>
+                                <option value="Grupo C">Grupo C</option>
+                        </select>
                 </td>
             </tr>
 
