@@ -64,6 +64,16 @@ def roles_permisos(request):
 def auditoria(request):
     return render(request, 'auditoria.html')
 
+#  Funciones para los botones del sidebar de Compras
+def desglose(req):
+    return render(req, "desglose.html")
+
+def seguimiento(req):
+    return render(req, "seguimiento.html")
+
+def tracking(req):
+    return render(req, "tracking.html")
+
 #  Funciones para los botones del sidebar de Produccion
 def ordenes(request):
     return render(request, 'ordenes.html')
@@ -73,3 +83,4 @@ def planificacion(request):
 
 def reportes(request):
     return render(request, 'reportes.html')
+
