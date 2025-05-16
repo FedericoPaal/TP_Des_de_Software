@@ -47,4 +47,7 @@ urlpatterns = [
     path('ordenes/', ordenes, name='ordenes'),
     path('planificacion/', planificacion, name='planificacion'),
     path('reportes/', reportes, name='reportes'),
+
+#  Paths para el boton Seleccionar de la tabla de OP// los botones del sidebar de Deposito
+    path('depo-seleccion/', depo_seleccion, name='depo_seleccion'),
 ]

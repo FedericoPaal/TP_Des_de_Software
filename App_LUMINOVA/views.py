@@ -84,3 +84,8 @@ def planificacion(request):
 def reportes(request):
     return render(request, 'reportes.html')
 
+#  Funciones para el boton Seleccionar de la tabla de OP// los botones del sidebar de Deposito
+def depo_seleccion(request):
+    return render(request, 'depo_seleccion.html')
+
+
