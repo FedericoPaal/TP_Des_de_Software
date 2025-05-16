@@ -5,7 +5,7 @@
 {% block title %}Depósito - Luminova{% endblock %}
 
 {% block sidebar_content %}
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse border-end vh-100" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-primary sidebar collapse border-end full-height" style="border-top-left-radius: 25px; border-top-right-radius: 25px;">
         <div class="position-sticky pt-4">
             <h6 class="sidebar-heading d-flex justify-content-center align-items-center px-3 mt-4 mb-1 text-white fw-bold">
                 <span>Depósito</span>
@@ -32,18 +32,14 @@
                         <i class="bi bi-trash-fill me-2"></i> <span class="ms-2">Eliminar Artículo</span>
                     </a>
                 </li>
-                <li class="nav-item mt-2">
-                    <a class="nav-link text-white fw-bold custom-active-button d-flex align-items-center" href="#">
-                        <i class="bi bi-folder-fill me-2"></i> <span class="ms-2">Gestionar Categorías</span>
-                    </a>
-                </li>
+                
             </ul>
         </div>
     </nav>
 {% endblock %}
 
 {% block content %}
-    <div class="row mx-auto">
+    <div class="row mx-auto border-start">
         <ul class="nav justify-content-start flex-wrap" style="background-color: white;">
             <li class="nav-item">
                 <button id="insumos-tab" onclick="mostrarInsumos()" class="nav-link active bg-primary text-white" style="width: 170px; border-top-left-radius: 20px; border-top-right-radius: 20px; font-weight: bold;" aria-current="page">Insumos</button>
@@ -195,7 +191,7 @@
             </div>
         </div>
         </div>
-        <div class="col-md-3 ms-4 bg-primary" style="width: 525px;">
+        <div class="col-md-3 ms-4 bg-primary border-start border-5 border-white" style="padding-top: 20px; padding-bottom: 20px; border-radius: 25px;">
             <h2 class="text-white">Órdenes de Producción</h2>
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -211,7 +207,7 @@
                     <span class="badge bg-primary rounded-pill">200</span>
                 </li>
             </ul>
-            <hr style="border: 5px solid white;">
+            <hr style="border: 2px solid white;">
             <h2 class="mt-3 text-white">Productos Terminados</h2>
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -223,9 +219,10 @@
                     <span class="badge bg-success rounded-pill">70</span>
                 </li>
             </ul>
-            <hr style="border: 5px solid white;">
+            <hr style="border: 2px solid white;">
             <h2 class="mt-3 text-white">Stock en Falta</h2>
             <p class="text-white">No hay productos en falta actualmente.</p>
+            <hr style="border: 2px solid white;">
         </div>
     </div>
 
