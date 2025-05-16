@@ -43,14 +43,18 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Gestión de Depósito</h1>
-    <div class="row">
-        <div class="col-md-8 bg-primary">
-            <div class="alert alert-info text-center" role="alert">
-                <p>Aquí se mostrará la lista de artículos, categorías y otras funcionalidades del depósito.</p>
+    <div class="row mx-auto">
+        <ul class="nav justify-content-start flex-wrap" style="background-color: white;">
+            <li class="nav-item">
+                <button id="insumos-tab" onclick="mostrarInsumos()" class="nav-link active bg-primary text-white" style="width: 170px; border-top-left-radius: 20px; border-top-right-radius: 20px; font-weight: bold;" aria-current="page">Insumos</button>
+            </li>
+            <li class="nav-item">
+                <button id="productos-tab" onclick="mostrarProductos()" class="nav-link bg-primary text-white" style="width: 170px; border-top-left-radius: 20px; border-top-right-radius: 20px; font-weight: bold;">Prod. Terminados</button>
+            </li>
+        </ul>
 
-            </div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="col-md-8 bg-primary" style="padding-top: 20px; padding-bottom: 20px;">
+            <div id="insumos-content" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
                 <div class="col">
                     <div class="card shadow-sm">
                         <img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" class="card-img-top object-fit-contain" alt="Modulo LED" style="height: 150px;">
@@ -172,9 +176,27 @@
                     </div>
                 </div>
             </div>
+            <div id="productos-content" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="display: none;">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" class="card-img-top object-fit-contain" alt="Modulo LED" style="height: 150px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto Terminado 1</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCvFSyuHD_M3NaiP-jTb8VxxqjcQVh5G0IToauM86eCRKJJqltJsdECZW0AEEWNT3yMf0&usqp=CAU" class="card-img-top object-fit-contain" alt="Porta LED Cab" style="height: 150px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Producto Terminado 2</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h2>Órdenes de Producción Recientes</h2>
+        </div>
+        <div class="col-md-3 ms-4 bg-primary" style="width: 525px;">
+            <h2 class="text-white">Órdenes de Producción</h2>
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     Módulo LED D08 sin conductor para bombillas
@@ -189,7 +211,8 @@
                     <span class="badge bg-primary rounded-pill">200</span>
                 </li>
             </ul>
-            <h2 class="mt-3">Productos Terminados Recientes</h2>
+            <hr style="border: 5px solid white;">
+            <h2 class="mt-3 text-white">Productos Terminados</h2>
             <ul class="list-group">
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     Lámpara de Pie
@@ -200,10 +223,30 @@
                     <span class="badge bg-success rounded-pill">70</span>
                 </li>
             </ul>
-            <h2 class="mt-3">Stock en Falta</h2>
-            <p>No hay productos en falta actualmente.</p>
+            <hr style="border: 5px solid white;">
+            <h2 class="mt-3 text-white">Stock en Falta</h2>
+            <p class="text-white">No hay productos en falta actualmente.</p>
         </div>
     </div>
 
+    <script>
+        function mostrarInsumos() {
+            document.getElementById("insumos-content").style.display = "flex";
+            document.getElementById("productos-content").style.display = "none";
+            document.getElementById("insumos-tab").classList.add("active");
+            document.getElementById("productos-tab").classList.remove("active");
+
+        }
+
+        function mostrarProductos() {
+            document.getElementById("insumos-content").style.display = "none";
+            document.getElementById("productos-content").style.display = "flex";
+            document.getElementById("insumos-tab").classList.remove("active");
+            document.getElementById("productos-tab").classList.add("active");
+        }
+
+        // Mostrar insumos por defecto
+        mostrarInsumos();
+    </script>
     <script src="{% static 'js/cards_deposito.js' %}"></script>
 {% endblock %}
