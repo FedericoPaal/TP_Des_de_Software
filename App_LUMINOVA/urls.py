@@ -50,4 +50,5 @@ urlpatterns = [
 
 #  Paths para el boton Seleccionar de la tabla de OP// los botones del sidebar de Deposito
     path('depo-seleccion/', depo_seleccion, name='depo_seleccion'),
+    path('depo-enviar/', depo_enviar, name='depo_enviar'),
 ]

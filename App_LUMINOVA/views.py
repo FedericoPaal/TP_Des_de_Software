@@ -88,4 +88,7 @@ def reportes(request):
 def depo_seleccion(request):
     return render(request, 'depo_seleccion.html')
 
+def depo_enviar(request):
+    return render(request, 'depo_enviar.html')
+
 
