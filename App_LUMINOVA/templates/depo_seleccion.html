@@ -416,7 +416,7 @@
         </div>
     </div>
 
-        <!-- Modal 1: Formulario para Agregar -->
+    <!-- Modal 1: Formulario para Agregar -->
     <div class="modal fade" id="exampleModal_Agregar" aria-hidden="true" aria-labelledby="exampleModalToggleLabel_Agregar" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -426,7 +426,13 @@
         </div>
         <div class="modal-body">
             <form id="formArticulo">
-            <div class="mb-3 d-flex align-items-center">
+                <label for="grupoEliminar" class="form-label">Seleccionar tipo de Articulo</label>
+                <select class="form-select" id="grupoEliminar" name="grupo">
+                    <option selected disabled>Sin asignar</option>
+                    <option value="Componente">Componente</option>
+                    <option value="Producto Terminado">Producto Terminado</option>
+                </select>
+            <div class="mb-3 d-flex align-items-center" style="padding-top: 20px;">
                 <label for="nombre" class="form-label" style="padding-right: 10px;">Nombre</label>
                 <input type="text" class="form-control" placeholder="Ingrese un Nombre" id="nombre" name="nombre" required>
             </div>
@@ -485,7 +491,13 @@
         </div>
         <div class="modal-body">
             <form id="formArticulo">
-            <div class="mb-3 d-flex align-items-center">
+                <label for="grupoEliminar" class="form-label">Seleccionar tipo de Articulo</label>
+                <select class="form-select" id="grupoEliminar" name="grupo">
+                    <option selected disabled>Sin asignar</option>
+                    <option value="Componente">Componente</option>
+                    <option value="Producto Terminado">Producto Terminado</option>
+                </select>
+            <div class="mb-3 d-flex align-items-center" style="padding-top: 20px;">
                 <label for="nombre" class="form-label" style="padding-right: 10px;">Nombre</label>
                 <input type="text" class="form-control" placeholder="Ingrese un Nombre" id="nombre" name="nombre" required>
             </div>
@@ -517,7 +529,13 @@
         </div>
         <div class="modal-body">
             <form id="formArticulo">
-            <div class="mb-3 d-flex align-items-center">
+                <label for="grupoEliminar" class="form-label">Seleccionar tipo de Articulo</label>
+                <select class="form-select" id="grupoEliminar" name="grupo">
+                    <option selected disabled>Sin asignar</option>
+                    <option value="Componente">Componente</option>
+                    <option value="Producto Terminado">Producto Terminado</option>
+                </select>
+            <div class="mb-3 d-flex align-items-center" style="padding-top: 20px;">
                 <label for="nombre" class="form-label" style="padding-right: 10px;">Nombre</label>
                 <input type="text" class="form-control" placeholder="Modifique el Nombre" id="nombre" name="nombre" required>
             </div>
