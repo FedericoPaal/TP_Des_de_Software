@@ -34,9 +34,15 @@ urlpatterns = [
 #  Paths para los botones del sidebar de Admin
 
     path('dashboard/', dashboard_view, name='dashboard'),
-    path('usuarios/', usuarios, name='usuarios'),
-    path('roles-permisos/', roles_permisos, name='roles-permisos'),
-    path('auditoria/', auditoria, name='auditoria'),
+    #path('usuarios/', usuarios, name='usuarios'),
+    path('roles-permisos/', roles_permisos_view, name='roles-permisos'),
+    path('auditoria/', auditoria_view, name='auditoria'),
+
+    # Path para el crud de Usuario
+    path('usuarios/', lista_usuarios, name='lista_usuarios'),
+    path('usuarios/crear/', crear_usuario, name='crear_usuario'),
+    path('usuarios/editar/<int:id>/', editar_usuario, name='editar_usuario'),
+    path('usuarios/eliminar/<int:id>/', eliminar_usuario, name='eliminar_usuario'),
 
 #  Paths para los botones del sidebar de Compras
     path("desglose/", desglose, name="desglose"),
