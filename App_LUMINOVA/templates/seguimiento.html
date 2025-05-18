@@ -32,53 +32,53 @@
 
 {% block content %}
 
-    <h1 class = "text-center">Órdenes de Compra Pendiente</h1>
+    <h1 class = "text-center">Ordenes de compra pendiente</h1>
 
     <table class="table">
   <thead class="table-primary rounded-top">
-    <tr class="text-center align-middle">
-        <th scope="col">N°OC</th>
-        <th scope="col">Estado de OC</th>
-        <th scope="col">Categoria</th>
-        <th scope="col">Fecha</th>
-        <th scope="col">Cantidad de items</th>
-        <th scope="col">Monto Total (US$$)</th>
-        <th scope="col">Fecha Estimada de Entrega</th>
-        <th scope="col">N°Tracking</th>
+    <tr>
+      <th scope="col" class="text-center align-middle">N°OC</th>
+      <th scope="col" class="text-center align-middle">Estado de OC</th>
+      <th scope="col" class="text-center align-middle">Categoria</th>
+      <th scope="col" class="text-center align-middle">Fecha</th>
+      <th scope="col" class="text-center align-middle">Cantidad de items</th>
+      <th scope="col" class="text-center align-middle">Monto Total (US$$)</th>
+      <th scope="col" class="text-center align-middle">Fecha Estimada de Entrega</th>
+      <th scope="col" class="text-center align-middle">N°Tracking</th>
     </tr>
   </thead>
   <tbody>
-    <tr class="text-center align-middle">
-        <td>OCOOO5</td>
-        <td>• Solicitado</td>
-        <td>Modulos Led dob</td>
-        <td>22/07/2025</td>
-        <td>4</td>
-        <td>250103,29</td>
-        <td>21/09/2025</td>
-        <td>
-            <a href="{% url 'App_LUMINOVA:tracking' %}">ABC123456</a>
-        </td>
+    <tr>
+      <td class="text-center align-middle">OCOOO5</td>
+      <td class="text-center align-middle">• Solicitado</td>
+      <td class="text-center align-middle">Modulos Led dob</td>
+      <td class="text-center align-middle">22/07/2025</td>
+      <td class="text-center align-middle">4</td>
+      <td class="text-center align-middle">250103,29</td>
+      <td class="text-center align-middle">21/09/2025</td>
+      <td>
+        <a href="{% url 'App_LUMINOVA:tracking' %}">ABC123456</a>
+      </td>
     </tr>
-    <tr class="text-center align-middle">
-        <td>OCOOO4</td>
-        <td>• Solicitado</td>
-        <td>Led with holder</td>
-        <td>22/07/2025</td>
-        <td>4</td>
-        <td>250103,29</td>
-        <td>20/09/2025</td>
-        <td>JKL123456</td>
+    <tr>
+      <td class="text-center align-middle">OCOOO4</td>
+      <td class="text-center align-middle">• Solicitado</td>
+      <td class="text-center align-middle">Led with holder</td>
+      <td class="text-center align-middle">22/07/2025</td>
+      <td class="text-center align-middle">4</td>
+      <td class="text-center align-middle">250103,29</td>
+      <td class="text-center align-middle">20/09/2025</td>
+      <td class="text-center align-middle">JKL123456</td>
     </tr>
-    <tr class="text-center align-middle">
-        <td>OCOOO3</td>
-        <td>• Solicitado</td>
-        <td>Reflector led</td>
-        <td>22/07/2025</td>
-        <td>4</td>
-        <td>250103,29</td>
-        <td>25/08/2025</td>
-        <td>ALC123456</td>
+    <tr>
+      <td class="text-center align-middle">OCOOO3</td>
+      <td class="text-center align-middle">• Solicitado</td>
+      <td class="text-center align-middle">Reflector led</td>
+      <td class="text-center align-middle">22/07/2025</td>
+      <td class="text-center align-middle">4</td>
+      <td class="text-center align-middle">250103,29</td>
+      <td class="text-center align-middle">25/08/2025</td>
+      <td class="text-center align-middle">ALC123456</td>
     </tr>
 
   </tbody>
