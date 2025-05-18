@@ -74,6 +74,9 @@ def seguimiento(req):
 def tracking(req):
     return render(req, "tracking.html")
 
+def desglose2(req):
+    return render(req, "desglose2.html")
+
 #  Funciones para los botones del sidebar de Produccion
 def ordenes(request):
     return render(request, 'ordenes.html')

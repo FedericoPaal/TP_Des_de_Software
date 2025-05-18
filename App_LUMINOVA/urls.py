@@ -39,9 +39,10 @@ urlpatterns = [
     path('auditoria/', auditoria, name='auditoria'),
 
 #  Paths para los botones del sidebar de Compras
-    path("desglose", desglose, name="desglose"),
+    path("desglose/", desglose, name="desglose"),
     path("seguimiento/", seguimiento, name="seguimiento"),
     path("tracking/", tracking, name="tracking"),
+    path("desglose2/", desglose2, name="desglose2"),
 
 #  Paths para los botones del sidebar de Produccion
     path('ordenes/', ordenes, name='ordenes'),
