@@ -324,49 +324,36 @@
                             <th scope="col" style="background-color: #808080;">Nombre</th>
                             <th scope="col" class="text-center" style="background-color: #808080;">Proveedor</th>
                             <th scope="col" class="text-center" style="background-color: #808080;">Cantidad</th>
+                            <th scope="col" class="text-center" style="background-color: #808080;">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
+                        {% for insumo in insumos %}
                         <tr>
                             <th scope="row" style="padding-top: 25px; padding-left: 20px;">
                                 <div style="width: 18px; height: 18px; background-color: red; border-radius: 4px; display: inline-block;"></div>
                             </th>
-                            <td class="text-center"><img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" alt="Modulo LED" style="height: 50px;"></td>
-                            <td class="text-center" style="padding-top: 20px;">1</td>
-                            <td style="padding-top: 20px;">Módulo LED, OSCONIQ S 5050 Series, Board + LED, Horti Blanco, 253 lm</td>
-                            <td class="text-center" style="padding-top: 20px;">Newark</td>
-                            <td class="text-center" style="padding-top: 20px;">600</td>
+                            <td class="text-center">
+                                {% if insumo.imagen %}
+                                    <img src="{{ insumo.imagen.url }}" alt="{{ insumo.descripcion }}" style="height: 50px;">
+                                {% else %}
+                                    <span>Sin imagen</span>
+                                {% endif %}
+                            </td>
+                            <td class="text-center" style="padding-top: 20px;">{{ insumo.id }}</td>
+                            <td style="padding-top: 20px;">{{ insumo.descripcion }}</td>
+                            <td class="text-center" style="padding-top: 20px;">{{ insumo.proveedor }}</td>
+                            <td class="text-center" style="padding-top: 20px;">{{ insumo.stock }}</td>
+                            <td class="text-center" style="padding-top: 15px;">
+                                <button class="btn btn-danger btn-sm me-1" title="Eliminar" data-producto-id="{{ insumo.id }}" data-producto-tipo="insumo">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                                <button class="btn btn-primary btn-sm" title="Editar" data-bs-toggle="modal" data-bs-target="#exampleModal_Modificar" data-producto-id="{{ insumo.id }}">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </td>
                         </tr>
-                        <tr>
-                            <th scope="row" style="background-color: #C0B9B9; padding-top: 25px; padding-left: 20px;">
-                                <div style="width: 18px; height: 18px; background-color: yellow; border-radius: 4px; display: inline-block;"></div>
-                            </th>
-                            <td class="text-center" style="background-color: #C0B9B9;"><img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" alt="Modulo LED" style="height: 50px;"></td>
-                            <td class="text-center" style="background-color: #C0B9B9; padding-top: 20px;">2</td>
-                            <td style="background-color: #C0B9B9; padding-top: 20px;">Módulo LED DOB sin conductor para bombillas</td>
-                            <td class="text-center" style="background-color: #C0B9B9; padding-top: 20px;">Alibaba</td>
-                            <td class="text-center" style="background-color: #C0B9B9; padding-top: 20px;">500</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="padding-top: 25px; padding-left: 20px; border-color: black;">
-                                <div style="width: 18px; height: 18px; background-color: yellow; border-radius: 4px; display: inline-block;"></div>
-                            </th>
-                            <td class="text-center"><img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" alt="Modulo LED" style="height: 50px;"></td>
-                            <td class="text-center" style="padding-top: 20px;">3</td>
-                            <td style="padding-top: 20px;">Módulo LED BXRC-30E10K0-B-73-SE</td>
-                            <td class="text-center" style="padding-top: 20px;">BridgeLux</td>
-                            <td class="text-center" style="padding-top: 20px;">380</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="background-color: #C0B9B9; padding-top: 25px; padding-left: 20px;">
-                                <div style="width: 18px; height: 18px; background-color: green; border-radius: 4px; display: inline-block;"></div>
-                            </th>
-                            <td class="text-center" style="background-color: #C0B9B9;"><img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" alt="Modulo LED" style="height: 50px;"></td>
-                            <td class="text-center" style="background-color: #C0B9B9; padding-top: 20px;">2</td>
-                            <td style="background-color: #C0B9B9; padding-top: 20px;">Módulo LED DOB sin conductor para bombillas</td>
-                            <td class="text-center" style="background-color: #C0B9B9; padding-top: 20px;">Alibaba</td>
-                            <td class="text-center" style="background-color: #C0B9B9; padding-top: 20px;">500</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
                 <div class="mt-3">
@@ -611,5 +598,79 @@
   </div>
 </div>
 
+
+<script>
+// Ejemplo de cómo capturar el ID del producto al abrir el modal de eliminar o editar
+const eliminarBtns = document.querySelectorAll('button[data-bs-target="#exampleModal_Eliminar"]');
+const editarBtns = document.querySelectorAll('button[data-bs-target="#exampleModal_Modificar"]');
+
+eliminarBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const productoId = this.getAttribute('data-producto-id');
+        // Aquí puedes setear el ID en un input oculto del modal o usarlo para la acción de eliminar
+        // document.getElementById('inputIdEliminar').value = productoId;
+    });
+});
+
+editarBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const productoId = this.getAttribute('data-producto-id');
+        // Aquí puedes cargar los datos del producto en el modal de edición
+        // cargarDatosProductoEnModal(productoId);
+    });
+});
+</script>
+    <script>
+    // Eliminar artículo vía AJAX desde el modal exampleModal1
+    function eliminarArticuloAjax(productoId, tipo, btn) {
+        fetch('/App_LUMINOVA/eliminar-articulo/', {
+            method: 'POST',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCookie('csrftoken'),
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `id=${productoId}&tipo=${tipo}`
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Elimina la fila de la tabla
+                const row = btn.closest('tr');
+                if (row) row.remove();
+            } else {
+                alert('Error al eliminar: ' + (data.error || 'Error desconocido'));
+            }
+        })
+        .catch(() => alert('Error de red al eliminar.'));
+    }
+
+    // Obtener CSRF token de cookie
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // Delegación para eliminar insumo/producto desde la tabla del modal exampleModal1
+    document.addEventListener('click', function(event) {
+        const btn = event.target.closest('button.btn-danger[data-producto-id]');
+        if (btn && btn.closest('#exampleModal1')) {
+            event.preventDefault();
+            const productoId = btn.getAttribute('data-producto-id');
+            const tipo = btn.getAttribute('data-producto-tipo') || 'insumo';
+            eliminarArticuloAjax(productoId, tipo, btn);
+        }
+    });
+    </script>
 
 {% endblock %}

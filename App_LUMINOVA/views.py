@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import *
 from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -21,7 +23,8 @@ def ventas(req):
     return render(req, "ventas.html")
 
 def deposito(req):
-    return render(req, "deposito.html")
+    insumos = Insumo.objects.all()
+    return render(req, "deposito.html", {"insumos": insumos})
 
 def control_calidad(req):
     return render(req, "control_calidad.html")
@@ -185,5 +188,26 @@ def depo_seleccion(request):
 
 def depo_enviar(request):
     return render(request, 'depo_enviar.html')
+
+@csrf_exempt
+@login_required
+def eliminar_articulo_ajax(request):
+    if request.method == 'POST':
+        tipo = request.POST.get('tipo')  # 'insumo' o 'producto'
+        id_ = request.POST.get('id')
+        if not tipo or not id_:
+            return JsonResponse({'success': False, 'error': 'Datos incompletos'}, status=400)
+        try:
+            if tipo == 'insumo':
+                obj = Insumo.objects.get(pk=id_)
+            elif tipo == 'producto':
+                obj = ProductoTerminado.objects.get(pk=id_)
+            else:
+                return JsonResponse({'success': False, 'error': 'Tipo inválido'}, status=400)
+            obj.delete()
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=400)
+    return JsonResponse({'success': False, 'error': 'Método no permitido'}, status=405)
 
 
