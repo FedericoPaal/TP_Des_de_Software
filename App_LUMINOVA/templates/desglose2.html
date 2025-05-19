@@ -31,35 +31,108 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
+    <div class="container px-0">  <!-- px-0 para eliminar padding horizontal del container -->
+    <div class="d-flex flex-column align-items-center">  <!-- Contenedor flex centrado -->
+        <h1 class="text-center mb-4 mx-auto">OC N°: OCOOO5</h1>  <!-- mx-auto para centrado exacto -->
+
+        <div class="table-responsive" style="max-width: 1000px;">  <!-- Para tablas responsivas -->
+            <table class="table" style="margin: 0 auto; width: 100%;">  <!-- Centrado adicional -->
+                <thead class="table-primary rounded-top">
+                    <tr>
+                        <th scope="col" class="text-center align-middle">ID Producto</th>
+                        <th scope="col" class="text-center align-middle">Imagen</th>
+                        <th scope="col" class="text-center align-middle">Nombre</th>
+                        <th scope="col" class="text-center align-middle">Fecha</th>
+                        <th scope="col" class="text-center align-middle">Cantidad</th>
+                        <th scope="col" class="text-center align-middle">Proveedores</th>
+                    </tr>
+                </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td class="text-center align-middle">1</td>
+      <td class="text-center align-middle">
+        <img src="https://static6.arrow.com/aropdfconversion/arrowimages/49eb0b23612ec168b4283540c921ea193ece742c/bxrc-27e10k0-c-74-se.jpg" alt="Producto 1" class="img-thumbnail" style="width: 80px; height: auto;">
+      </td>
+      <td class="text-center align-middle">Modulo led BXRC-30E10K00-B-73-SE</td>
+      <td class="text-center align-middle">22/07/2025</td>
+      <td class="text-center align-middle">600</td>
+      <td class="text-center align-middle">
+        <button class="proveedor-badge border-0" style="cursor: pointer;">
+          Seleccionar proveedores
+        </button>
+      </td>
+
     </tr>
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+      <td class="text-center align-middle">2</td>
+      <td class="text-center align-middle">
+        <img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg?01AD=3XhXqLCIbeFqyc-BcKNT6TAcsEgGJvz1_yk0nNErTbYEfWqmRmh_gFQ&01RI=A5E1BFD0B413214&01NA=" alt="Producto 1" class="img-thumbnail" style="width: 80px; height: auto;">
+
+      </td>
+      <td class="text-center align-middle">Módulo LED, OSCONIQ S 5050 Series, Board + LED, Horti Blanco, 253 lm</td>
+      <td class="text-center align-middle">22/07/2025</td>
+      <td class="text-center align-middle">200</td>
+      <td class="text-center align-middle">
+        <span class="proveedor-badge">Seleccionar proveedores</span>
+      </td>
+
     </tr>
     <tr>
-      <th scope="row">3</th>
-      <td>John</td>
-      <td>Doe</td>
-      <td>@social</td>
+      <td class="text-center align-middle">3</td>
+      <td class="text-center align-middle">
+        <img src="https://do1jvmih5t6vs.cloudfront.net/userfiles/ad/large/sirius_3su1401_1bb00_1aa0.jpg" alt="Producto 1" class="img-thumbnail" style="width: 80px; height: auto;">
+
+      </td>
+      <td class="text-center align-middle">Siemens 3SU14011BB301AA0 LED Module</td>
+      <td class="text-center align-middle">22/07/2025</td>
+      <td class="text-center align-middle">80</td>
+      <td class="text-center align-middle">
+        <span class="proveedor-badge">Seleccionar proveedores</span>
+      </td>
+
     </tr>
+    <tr>
+      <td class="text-center align-middle">4</td>
+      <td class="text-center align-middle">
+        <img src="https://s.alicdn.com/@sc04/kf/H4b331e3f2bb64bca9118838dd941caefs.jpg_720x720q50.jpg" alt="Producto 1" class="img-thumbnail" style="width: 80px; height: auto;">
+
+      </td>
+      <td class="text-center align-middle">Módulo LED DOB sin conductor para bombillas, 3-60 vatios, AC220V</td>
+      <td class="text-center align-middle">22/07/2025</td>
+      <td class="text-center align-middle">100</td>
+      <td class="text-center align-middle">
+        <span class="proveedor-badge">Seleccionar proveedores</span>
+      </td>
+
+    </tr>
+
   </tbody>
 </table>
+        </div>
 
+<div class="w-100 mt-3 text-end" style="max-width: 1000px;">  <!-- Mismo ancho máximo que la tabla -->
+            <button class="proveedor-badge border-0" style="cursor: pointer;">
+                Generar OC
+            </button>
+        </div>
+
+<style>
+    thead.rounded-top th:first-child {
+        border-top-left-radius: 10px;
+    }
+    thead.rounded-top th:last-child {
+        border-top-right-radius: 10px;
+    }
+    .proveedor-badge {
+        background-color: #0d6efd; /* Mismo azul que el borde */
+        color: white;
+        padding: 6px 12px;
+        border-radius: 4px;
+        display: inline-block;
+        white-space: nowrap;
+    }
+    .table {
+        width: auto !important;  /* Permite que la tabla se ajuste al contenido */
+    }
+</style>
 {% endblock %}
