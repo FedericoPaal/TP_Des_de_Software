@@ -9,6 +9,8 @@ from .models import *
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST, require_GET
+from django.db.models import Count
 
 # Create your views here.
 
@@ -24,7 +26,8 @@ def ventas(req):
 
 def deposito(req):
     insumos = Insumo.objects.all()
-    return render(req, "deposito.html", {"insumos": insumos})
+    productos = ProductoTerminado.objects.all()
+    return render(req, "deposito.html", {"insumos": insumos, "productos": productos})
 
 def control_calidad(req):
     return render(req, "control_calidad.html")
@@ -209,5 +212,57 @@ def eliminar_articulo_ajax(request):
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
     return JsonResponse({'success': False, 'error': 'Método no permitido'}, status=405)
+
+@csrf_exempt
+@require_POST
+def agregar_insumo_ajax(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        descripcion = request.POST.get('descripcion')
+        categoria = request.POST.get('categoria')
+        fabricante = request.POST.get('fabricante')
+        precio_unitario = request.POST.get('precio_unitario')
+        tiempo_entrega = request.POST.get('tiempo_entrega')
+        proveedor = request.POST.get('proveedor')
+        stock = request.POST.get('stock')
+        imagen = request.FILES.get('imagen')
+        if not all([descripcion, categoria, fabricante, precio_unitario, tiempo_entrega, proveedor, stock]):
+            return JsonResponse({'success': False, 'error': 'Datos incompletos'}, status=400)
+        try:
+            insumo = Insumo.objects.create(
+                descripcion=descripcion,
+                categoria=categoria,
+                fabricante=fabricante,
+                precio_unitario=precio_unitario,
+                tiempo_entrega=tiempo_entrega,
+                imagen=imagen,
+                proveedor=proveedor,
+                stock=stock
+            )
+            return JsonResponse({'success': True, 'id': insumo.id})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=400)
+    return JsonResponse({'success': False, 'error': 'Petición inválida'}, status=400)
+
+@csrf_exempt
+@require_POST
+def agregar_producto_ajax(request):
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        descripcion = request.POST.get('descripcion')
+        categoria = request.POST.get('categoria')
+        precio_unitario = request.POST.get('precio_unitario')
+        stock = request.POST.get('stock')
+        if not all([descripcion, categoria, precio_unitario, stock]):
+            return JsonResponse({'success': False, 'error': 'Datos incompletos'}, status=400)
+        try:
+            producto = ProductoTerminado.objects.create(
+                descripcion=descripcion,
+                categoria=categoria,
+                precio_unitario=precio_unitario,
+                stock=stock
+            )
+            return JsonResponse({'success': True, 'id': producto.id})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=400)
+    return JsonResponse({'success': False, 'error': 'Petición inválida'}, status=400)
 
 

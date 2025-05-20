@@ -17,6 +17,7 @@ Including another URLconf
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from .views import *
+from . import views
 
 app_name = 'App_LUMINOVA'
 
@@ -60,4 +61,6 @@ urlpatterns = [
     path('depo-enviar/', depo_enviar, name='depo_enviar'),
 
     path('eliminar-articulo/', eliminar_articulo_ajax, name='eliminar_articulo_ajax'),
+    path('agregar-insumo/', agregar_insumo_ajax, name='agregar_insumo_ajax'),
+    path('agregar-producto/', views.agregar_producto_ajax, name='agregar_producto_ajax'),
 ]
