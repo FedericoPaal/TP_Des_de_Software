@@ -167,10 +167,12 @@
             <div id="productos-content" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" style="display: none;">
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" class="card-img-top object-fit-contain" alt="Modulo LED" style="height: 150px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Producto Terminado 1</h5>
-                    </div>
+                    <a href="#" class="text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#modalProductosTerminados">
+                        <img src="https://www.newark.com/productimages/promo/en_US/56AJ9853-40.jpg" class="card-img-top object-fit-contain" alt="Modulo LED" style="height: 150px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Producto Terminado 1</h5>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="col">
@@ -804,5 +806,170 @@ if (formAgregarProducto) {
         .catch(() => alert('Error de red al agregar.'));
     });
 }
+</script>
+
+<!-- Modal Productos Terminados -->
+<div class="modal fade" id="modalProductosTerminados" tabindex="-1" aria-labelledby="modalProductosTerminadosLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <nav class="navbar navbar-light bg-light">
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-white" type="submit"><i class="bi bi-search"></i></button>
+          </form>
+        </nav>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style=" padding-left: 50px; padding-right: 50px;">
+        <table class="table bg-primary" style="border: black;">
+          <thead>
+            <th class="text-white text-center" style="background-color: #014BAC;" colspan="6">
+              Productos Terminados
+            </th>
+          </thead>
+          <thead>
+            <tr>
+              <th scope="col" class="text-center" style="background-color: #808080;">ID</th>
+              <th scope="col" style="background-color: #808080;">Descripción</th>
+              <th scope="col" class="text-center" style="background-color: #808080;">Categoría</th>
+              <th scope="col" class="text-center" style="background-color: #808080;">Precio Unitario</th>
+              <th scope="col" class="text-center" style="background-color: #808080;">Cantidad</th>
+              <th scope="col" class="text-center" style="background-color: #808080;">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for producto in productos_terminados %}
+            <tr>
+              <td class="text-center" style="padding-top: 20px;">{{ producto.id }}</td>
+              <td style="padding-top: 20px;">{{ producto.descripcion }}</td>
+              <td class="text-center" style="padding-top: 20px;">{{ producto.categoria }}</td>
+              <td class="text-center" style="padding-top: 20px;">{{ producto.precio_unitario }}</td>
+              <td class="text-center" style="padding-top: 20px;">{{ producto.stock }}</td>
+              <td class="text-center" style="padding-top: 15px;">
+                <button class="btn btn-danger btn-sm me-1" title="Eliminar" data-producto-id="{{ producto.id }}" data-producto-tipo="producto" onclick="eliminarArticuloAjax('{{ producto.id }}', 'producto', this)">
+                  <i class="bi bi-trash"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" title="Editar" data-producto-id="{{ producto.id }}">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="6" class="text-center text-white">No hay productos terminados registrados.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Producto Terminado -->
+<div class="modal fade" id="modalEditarProducto" tabindex="-1" aria-labelledby="modalEditarProductoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditarProductoLabel">Editar Producto Terminado</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formEditarProducto">
+          <input type="hidden" id="editarProductoId" name="id">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Categoría</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span id="editarProductoIdText"></span></td>
+                <td><input type="text" class="form-control" id="editarDescripcionProducto" name="descripcion" required></td>
+                <td><input type="text" class="form-control" id="editarCategoriaProducto" name="categoria" required></td>
+                <td><input type="number" step="0.01" class="form-control" id="editarPrecioProducto" name="precio_unitario" required></td>
+                <td><input type="number" class="form-control" id="editarStockProducto" name="stock" min="0" required></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-end">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Abrir modal de edición y cargar datos
+function abrirModalEditarProducto(productoId) {
+  fetch(`/App_LUMINOVA/get-producto-terminado/?id=${productoId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        document.getElementById('editarProductoId').value = data.producto.id;
+        document.getElementById('editarProductoIdText').textContent = data.producto.id;
+        document.getElementById('editarDescripcionProducto').value = data.producto.descripcion;
+        document.getElementById('editarCategoriaProducto').value = data.producto.categoria;
+        document.getElementById('editarPrecioProducto').value = data.producto.precio_unitario;
+        document.getElementById('editarStockProducto').value = data.producto.stock;
+        var modal = new bootstrap.Modal(document.getElementById('modalEditarProducto'));
+        modal.show();
+      } else {
+        alert('No se pudo cargar el producto.');
+      }
+    })
+    .catch(() => alert('Error de red al cargar producto.'));
+}
+
+// Enviar edición por AJAX
+const formEditarProducto = document.getElementById('formEditarProducto');
+if (formEditarProducto) {
+  formEditarProducto.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(formEditarProducto);
+    fetch('/App_LUMINOVA/editar-producto/', {
+      method: 'POST',
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRFToken': getCookie('csrftoken'),
+      },
+      body: new URLSearchParams(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        var modal = bootstrap.Modal.getInstance(document.getElementById('modalEditarProducto'));
+        if (modal) modal.hide();
+        location.reload();
+      } else {
+        alert('Error al editar: ' + (data.error || 'Error desconocido'));
+      }
+    })
+    .catch(() => alert('Error de red al editar.'));
+  });
+}
+</script>
+
+<!-- Agregar botón editar en la tabla de productos terminados -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('#modalProductosTerminados button.btn-primary[data-producto-id]').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Cierra el modal de la tabla si está abierto
+      const modalTabla = bootstrap.Modal.getInstance(document.getElementById('modalProductosTerminados'));
+      if (modalTabla) modalTabla.hide();
+      // Abre el modal de edición y carga datos
+      abrirModalEditarProducto(this.getAttribute('data-producto-id'));
+    });
+  });
+});
 </script>
 {% endblock %}

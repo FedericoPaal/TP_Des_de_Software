@@ -63,4 +63,6 @@ urlpatterns = [
     path('eliminar-articulo/', eliminar_articulo_ajax, name='eliminar_articulo_ajax'),
     path('agregar-insumo/', agregar_insumo_ajax, name='agregar_insumo_ajax'),
     path('agregar-producto/', views.agregar_producto_ajax, name='agregar_producto_ajax'),
+    path('get-producto-terminado/', views.get_producto_terminado, name='get_producto_terminado'),
+    path('editar-producto/', views.editar_producto_terminado, name='editar_producto_terminado'),
 ]

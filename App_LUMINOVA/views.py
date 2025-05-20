@@ -26,8 +26,8 @@ def ventas(req):
 
 def deposito(req):
     insumos = Insumo.objects.all()
-    productos = ProductoTerminado.objects.all()
-    return render(req, "deposito.html", {"insumos": insumos, "productos": productos})
+    productos_terminados = ProductoTerminado.objects.all()
+    return render(req, "deposito.html", {"insumos": insumos, "productos_terminados": productos_terminados})
 
 def control_calidad(req):
     return render(req, "control_calidad.html")
@@ -264,5 +264,40 @@ def agregar_producto_ajax(request):
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)}, status=400)
     return JsonResponse({'success': False, 'error': 'Petición inválida'}, status=400)
+
+@require_GET
+def get_producto_terminado(request):
+    producto_id = request.GET.get('id')
+    try:
+        producto = ProductoTerminado.objects.get(id=producto_id)
+        return JsonResponse({
+            'success': True,
+            'producto': {
+                'id': producto.id,
+                'descripcion': producto.descripcion,
+                'categoria': producto.categoria,
+                'precio_unitario': str(producto.precio_unitario),
+                'stock': producto.stock,
+            }
+        })
+    except ProductoTerminado.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Producto no encontrado'})
+
+@csrf_exempt
+@require_POST
+def editar_producto_terminado(request):
+    producto_id = request.POST.get('id')
+    try:
+        producto = ProductoTerminado.objects.get(id=producto_id)
+        producto.descripcion = request.POST.get('descripcion')
+        producto.categoria = request.POST.get('categoria')
+        producto.precio_unitario = request.POST.get('precio_unitario')
+        producto.stock = request.POST.get('stock')
+        producto.save()
+        return JsonResponse({'success': True})
+    except ProductoTerminado.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Producto no encontrado'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
 
 
