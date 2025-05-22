@@ -185,6 +185,17 @@ def planificacion(request):
 def reportes(request):
     return render(request, 'reportes.html')
 
+#  Funciones para los botones del sidebar de Ventas
+
+def generar_op(request):
+    return render(request, 'generar_op.html')
+
+def buscar_op(request):
+    return render(request, 'buscar_op.html')
+
+def clientes(request):
+    return render(request, 'clientes.html')
+
 #  Funciones para el boton Seleccionar de la tabla de OP// los botones del sidebar de Deposito
 def depo_seleccion(request):
     return render(request, 'depo_seleccion.html')

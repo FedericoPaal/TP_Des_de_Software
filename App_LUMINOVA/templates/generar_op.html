@@ -15,18 +15,34 @@
                     </a>
                 </li>
                 <li class="nav-item mt-2">
-                    <a class="nav-link  {% if '/generar_op/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:generar_op' %}" style="border-radius: 25px; padding-top: 0.75rem; padding-bottom: 0.75rem;">
+                    <a class="nav-link  {% if '/generar-op/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:generar_op' %}" style="border-radius: 25px; padding-top: 0.75rem; padding-bottom: 0.75rem;">
                         <i class="bi bi-card-checklist"></i> <span class="ms-2">Generar OP</span>
                     </a>
                 </li>
                 <li class="nav-item mt-2">
-                    <a class="nav-link  {% if '/buscar_op/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:buscar_op' %}" style="border-radius: 25px;">
+                    <a class="nav-link  {% if '/buscar-op/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:buscar_op' %}" style="border-radius: 25px;">
                         <i class="bi bi-flag"></i> <span class="ms-2">Buscar OP</span>
                     </a>
                 </li>
                 <li class="nav-item mt-2">
                     <a class="nav-link  {% if '/clientes/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:clientes' %}" style="border-radius: 25px;">
                         <i class="bi bi-flag"></i> <span class="ms-2">Clientes</span>
+                    </a>
+                </li>
+            </ul>
+            <h6 class="sidebar-heading d-flex justify-content-center align-items-center px-3 mt-4 mb-1 text-white fw-bold">
+                <span>Órdenes de Producción</span>
+            </h6>
+            <hr class="text-white">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link  {% if '/ventas/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" aria-current="page" href="{% url 'App_LUMINOVA:ventas' %}" style="border-radius: 25px;">
+                        <i class="bi bi-clipboard"></i> <span class="ms-2">Nueva OP</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-2">
+                    <a class="nav-link  {% if '/generar_op/' in request.path %}active{% endif %}  text-white fw-bold custom-active-button d-flex align-items-center" href="{% url 'App_LUMINOVA:generar_op' %}" style="border-radius: 25px; padding-top: 0.75rem; padding-bottom: 0.75rem;">
+                        <i class="bi bi-card-checklist"></i> <span class="ms-2">Añadir Item</span>
                     </a>
                 </li>
             </ul>

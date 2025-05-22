@@ -56,6 +56,11 @@ urlpatterns = [
     path('planificacion/', planificacion, name='planificacion'),
     path('reportes/', reportes, name='reportes'),
 
+#  Paths para los botones del sidebar de Ventas
+    path('generar-op/', generar_op, name='generar_op'),
+    path('buscar-op/', buscar_op, name='buscar_op'),
+    path('clientes/', clientes, name='clientes'),
+
 #  Paths para el boton Seleccionar de la tabla de OP// los botones del sidebar de Deposito
     path('depo-seleccion/', depo_seleccion, name='depo_seleccion'),
     path('depo-enviar/', depo_enviar, name='depo_enviar'),
